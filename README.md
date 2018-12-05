@@ -3,7 +3,7 @@ Created with [Create React App](https://github.com/facebook/create-react-app).
 ## Requeriments
 
  - [Node JS](https://nodejs.org/en/)
- - This application works in conjunction with its corresponding [API](https://github.com)
+ - This application works in conjunction with its corresponding [API](https://github.com/luizPablo/node-api)
 
 ## First steps
 - Clone the repository on your computer	
@@ -17,8 +17,9 @@ Created with [Create React App](https://github.com/facebook/create-react-app).
  - If all goes well, something similar to the image below will appear on your terminal
  ![enter image description here](https://i.postimg.cc/Dy79s4K5/Screenshot-from-2018-12-04-21-16-18.png)
 	 
-	 - The address described in "**On Your Network**" is important, through it you can access the application on any device on the same network, including a smartphone.
-
+	 - The address described in "**On Your Network**" is important, through it you can access the application on any device on the same network, including a smartphone. In order for other devices, in addition to local computer, to access the API, it is necessary to change the API baseUrl in the file */src/services/api.js*. Change "*localhost*" to the IP that appears on your terminal and run again the project with `npm start`. Just the address, keep the port. In my case it was like this:
+	 	- `const api = axios.create({ baseURL: 'http://10.0.0.106:5000' });`
+	 
 ## Functionalities
 - Register users
 - Login
