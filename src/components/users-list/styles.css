@@ -1,0 +1,12 @@
+.users-list {
+    padding: 10px; 
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+@media screen and (max-width: 1024px) {
+    .users-list {
+        padding-left: 5%;
+        padding-right: 5%;
+    }    
+}

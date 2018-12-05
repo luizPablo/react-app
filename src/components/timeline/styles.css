@@ -1,0 +1,74 @@
+.timeline {
+    margin: 20px;
+    margin-top: 80px;
+    padding-left: 20%;
+    padding-right: 20%;
+    display: grid;
+}
+
+.timeline button {
+    height: 60px;
+    width: 60px;
+    border: none;
+    border-radius: 50%;
+    justify-self: center;
+    cursor: pointer;
+    font-weight: lighter;
+    font-size: 40px;
+    background: #bdc3c7;
+    color: #ecf0f1;
+    text-align: center;
+}
+
+button.notification {
+    width: 40px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background: #2c3e50;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+@media screen and (max-width: 1024px) {
+    #main-header span {
+        display: none;
+    }
+    
+    .actions {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .actions input[type="text"] {
+        width: 100px;
+        height: 20px;
+        font-size: 10px;
+    }
+
+    #main-header {
+        padding-left: 0%;
+        padding-right: 0%; 
+    }
+
+    #main-header .header-button {
+        font-size: 10px;
+        height: 20px;
+        width: 60px;
+    }
+
+    .actions a {
+        padding: 4.5px 15px;
+        font-size: 10px;
+    }
+    
+    .timeline {
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+}
