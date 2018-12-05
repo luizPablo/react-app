@@ -106,6 +106,7 @@ class Timeline extends Component {
                     <Post post={post} key={post._id} />
                 ))}
                 {more}
+                
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',

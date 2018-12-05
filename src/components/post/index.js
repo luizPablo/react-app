@@ -36,7 +36,19 @@ class Post extends Component {
     };
 
     likeUnlike = async () => {
-        const query = `mutation{ likeOrUnlikePost(_id: "${this.post._id}"){ likes{ _id, name, login, url_image, following{ _id }, followers{ _id } } } }`;
+        const query = `mutation{ 
+            likeOrUnlikePost(_id: "${this.post._id}"){ 
+                likes{ 
+                    _id, 
+                    name, 
+                    login, 
+                    url_image, 
+                    following{ _id }, 
+                    followers{ _id } 
+                } 
+            } 
+        }`;
+
         const post = await api.post(
             '/graphql', 
             {query: query},
@@ -74,9 +86,17 @@ class Post extends Component {
                 </div>
 
                 <div className="post-text">
-                    <Link to={{pathname: '/profile', state: {user: this.post.author}}}><span>@{this.post.author.login}</span></Link>
+                    <Link to={{pathname: '/profile', state: {user: this.post.author}}}>
+                        <span>@{this.post.author.login}</span>
+                    </Link>
                     <h3>
-                        <ReactHashtag renderHashtag={(hashtagValue) => (<Link key={this.post._id} to={{pathname: '/search', state: {search: hashtagValue}}}>{hashtagValue}</Link>)}>
+                        <ReactHashtag 
+                            renderHashtag={(hashtagValue) => (
+                                <Link key={this.post._id} to={{pathname: '/search', state: {search: hashtagValue}}}>
+                                    {hashtagValue}
+                                </Link>
+                            )
+                        }>
                             {this.post.text}
                         </ReactHashtag>
                     </h3>
@@ -85,8 +105,11 @@ class Post extends Component {
 
                 <div className="like">
                     {liked}
-                    <span onClick={this.handleClickOpen}>{this.post.likes.length} likes</span>
+                    <span onClick={this.handleClickOpen}>
+                        {this.post.likes.length} likes
+                    </span>
                 </div>
+                
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}

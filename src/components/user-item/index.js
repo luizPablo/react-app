@@ -26,13 +26,37 @@ class UserItem extends Component {
     getPosts = async () => {
         const posts = await api.post(
             '/graphql', 
-            {query: `{ postsByUser(_id: "${this.state.user._id}") { docs { _id, likes { _id } }, total } }`},
+            {query: `{ postsByUser(_id: "${this.state.user._id}"){ 
+                    docs { 
+                        _id, 
+                        likes { _id } 
+                    }, 
+                    total 
+                } 
+            }`},
             {headers: {'x-access-token': localStorage.getItem('access-token')}}
         );
 
         const get_user = await api.post(
             '/graphql', 
-            {query: `{ user(_id: "${this.state.user._id}") { following { _id, name, login, url_image, following { _id }, followers { _id } }, followers { _id, name, login, url_image, following { _id }, followers { _id } } } }`},
+            {query: `{ user(_id: "${this.state.user._id}") { 
+                following { 
+                    _id, 
+                    name, 
+                    login, 
+                    url_image, 
+                    following { _id }, 
+                    followers { _id } 
+                }, 
+                followers { 
+                    _id, 
+                    name, 
+                    login, 
+                    url_image, 
+                    following { _id }, 
+                    followers { _id } 
+                } 
+            } }`},
             {headers: {'x-access-token': localStorage.getItem('access-token')}}
         );
 
@@ -59,7 +83,16 @@ class UserItem extends Component {
         let users;
         let update_user;
 
-        query = `mutation{ followOrUnfollowUser(_id: "${this.state.user._id}"){ followers{ _id, name, login, url_image, following { _id }, followers { _id } } } }`;
+        query = `mutation{ followOrUnfollowUser(_id: "${this.state.user._id}"){ 
+            followers{ 
+                _id, 
+                name, 
+                login, 
+                url_image, 
+                following { _id }, 
+                followers { _id } 
+            } 
+        } }`;
         user_response = await api.post(
             '/graphql', 
             {query: query},
@@ -103,7 +136,9 @@ class UserItem extends Component {
                 </div>
 
                 <div className="item-info">
-                    <Link to={{pathname: '/profile', state: {user: user}}}><span>@{user.login}</span></Link>
+                    <Link to={{pathname: '/profile', state: {user: user}}}>
+                        <span>@{user.login}</span>
+                    </Link>
                     <h3>{user.name}</h3>
                 </div>
 
@@ -113,13 +148,21 @@ class UserItem extends Component {
                         <h3>{totalPosts}</h3>
                     </div>
                     <div className="item-number">
-                        <Link className="label" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}><span>Following</span></Link>
-                        <Link className="label" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}><h3>{user.following.length}</h3></Link>
+                        <Link className="label" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}>
+                            <span>Following</span>
+                        </Link>
+                        <Link className="label" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}>
+                            <h3>{user.following.length}</h3>
+                        </Link>
                     </div>
                     
                     <div className="item-number">
-                        <Link className="label" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}><span>Followers</span></Link>
-                        <Link className="label" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}><h3>{user.followers.length}</h3></Link>
+                        <Link className="label" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}>
+                            <span>Followers</span>
+                        </Link>
+                        <Link className="label" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}>
+                            <h3>{user.followers.length}</h3>
+                        </Link>
                     </div>
                 </div>
 

@@ -32,7 +32,19 @@ class ListHeader extends Component {
         let users;
         let update_user;
 
-        query = `mutation{ followOrUnfollowUser(_id: "${this.state.user._id}"){ followers{ _id, name, login, url_image, following { _id }, followers { _id } } } }`;
+        query = `mutation{ 
+            followOrUnfollowUser(_id: "${this.state.user._id}"){ 
+                followers{ 
+                    _id, 
+                    name, 
+                    login, 
+                    url_image, 
+                    following { _id }, 
+                    followers { _id } 
+                } 
+            } 
+        }`;
+        
         user_response = await api.post(
             '/graphql', 
             {query: query},

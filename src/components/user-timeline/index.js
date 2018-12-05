@@ -34,7 +34,12 @@ class UserTimeline extends Component {
 
     createPost = async () => {
         try {
-            const query = `mutation{ createPost( input: { text: "${this.state.post}", date: "${new Date()}", author: "${this.state.user._id}" } ){ _id } }`;
+            const query = `mutation{ createPost( 
+                input: { 
+                    text: "${this.state.post}", 
+                    date: "${new Date()}", 
+                    author: "${this.state.user._id}" 
+                } ){ _id } }`;
             await api.post(
                 '/graphql', 
                 {query: query},
@@ -139,22 +144,37 @@ class UserTimeline extends Component {
                                 <h3>{totalPosts}</h3>
                             </div>
                             <div className="following">
-                                <Link className="label" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}>Following</Link>
-                                <Link className="count" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}>{user.following.length}</Link>
+                                <Link className="label" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}>
+                                    Following
+                                </Link>
+                                <Link className="count" to={{pathname: "/listusers", state: {title: "Following these people", user: user, type: 0}}}>
+                                    {user.following.length}
+                                </Link>
                             </div>
                             <div className="followers">
-                                <Link className="label" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}>Followers</Link>
-                                <Link className="count" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}>{user.followers.length}</Link>
+                                <Link className="label" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}>
+                                    Followers
+                                </Link>
+                                <Link className="count" to={{pathname: "/listusers", state: {title: "Followed by these people", user: user, type: 1}}}>
+                                    {user.followers.length}
+                                </Link>
                             </div>
                         </div>
                     </div>
                     
                     <div className="text-area">
-                        <textarea rows="3" maxLength="280" placeholder="What's happening?" value={this.state.post} onChange={this.changePost}></textarea>
+                        <textarea 
+                            rows="3" 
+                            maxLength="280" 
+                            placeholder="What's happening?" 
+                            value={this.state.post} 
+                            onChange={this.changePost}>
+                        </textarea>
                         <button onClick={this.createPost}>Post It</button>
                     </div>
                 </div>
-                <Timeline refresh={this.createPost}/>
+                <Timeline refresh={this.createPost} />
+
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',
@@ -177,6 +197,5 @@ class UserTimeline extends Component {
         );
     }
 }
-
 
 export default withRouter(UserTimeline);
